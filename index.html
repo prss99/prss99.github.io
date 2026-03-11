@@ -3,92 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Priscilla N | Portfolio</title>
+  <title>Priscilla N | Interactive Portfolio</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background: #f5f7fb;
-      color: #222;
+      background: #0f172a;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    canvas#bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
 
     header {
-      background: linear-gradient(135deg, #1f2937, #374151);
-      color: white;
       text-align: center;
-      padding: 60px 20px;
+      padding: 100px 20px 60px;
     }
 
     header h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin-bottom: 10px;
     }
 
-    header p {
-      font-size: 1.1rem;
-      color: #d1d5db;
+    #typing {
+      font-size: 1.2rem;
+      color: #93c5fd;
+      min-height: 30px;
     }
 
     nav {
-      background: white;
       text-align: center;
       padding: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       position: sticky;
       top: 0;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(8px);
     }
 
     nav a {
+      color: white;
       text-decoration: none;
-      color: #374151;
       margin: 0 15px;
       font-weight: bold;
     }
 
     nav a:hover {
-      color: #2563eb;
+      color: #60a5fa;
     }
 
     .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 20px;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
     }
 
     .card {
-      background: white;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
       padding: 25px;
-      margin-bottom: 20px;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(96,165,250,0.25);
     }
 
     h2 {
-      color: #1f2937;
+      color: #93c5fd;
       margin-bottom: 15px;
-      border-bottom: 2px solid #2563eb;
-      display: inline-block;
-      padding-bottom: 5px;
-    }
-
-    ul {
-      padding-left: 20px;
     }
 
     .skills span {
       display: inline-block;
-      background: #e0e7ff;
-      color: #1e3a8a;
       padding: 8px 14px;
-      margin: 6px 6px 0 0;
+      margin: 6px;
       border-radius: 20px;
-      font-size: 0.95rem;
+      background: #1e3a8a;
     }
 
     .project {
@@ -96,76 +101,59 @@
     }
 
     .project h3 {
-      color: #2563eb;
+      color: #bfdbfe;
       margin-bottom: 5px;
+    }
+
+    #simCanvas {
+      display: block;
+      margin: 20px auto 0;
+      background: #111827;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.15);
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background: #1f2937;
-      color: white;
-      margin-top: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 18px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-    }
-
-    .btn:hover {
-      background: #1d4ed8;
+      padding: 25px;
+      color: #cbd5e1;
     }
   </style>
 </head>
 <body>
+  <canvas id="bg"></canvas>
 
   <header>
     <h1>Priscilla N</h1>
-    <p>Software Engineering Graduate | Aspiring Software Developer</p>
-    <a href="#contact" class="btn">Contact Me</a>
+    <p id="typing"></p>
   </header>
 
   <nav>
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
-    <a href="#education">Education</a>
+    <a href="#simulation">Simulation</a>
     <a href="#contact">Contact</a>
   </nav>
 
   <div class="container">
-
     <section id="about" class="card">
       <h2>About Me</h2>
       <p>
         Hello, I am Priscilla, a fresh graduate with a Bachelor’s Degree in Software Engineering.
-        I am interested in software development and data science. I enjoy learning new technologies,
-        solving problems, and creating useful digital solutions that can make a positive impact.
+        I am interested in software development, data science, and interactive digital solutions.
       </p>
     </section>
 
     <section id="projects" class="card">
       <h2>Projects</h2>
-
       <div class="project">
         <h3>Final Year Project</h3>
         <p>3D Crowd Emergency Simulation and Analysis</p>
       </div>
-
       <div class="project">
         <h3>Academic Projects</h3>
-        <p>Built programming and software-related projects throughout my academic journey.</p>
-      </div>
-
-      <div class="project">
-        <h3>Internship Experience</h3>
-        <p>Add your internship project or responsibilities here.</p>
+        <p>Built software and programming projects throughout my academic journey.</p>
       </div>
     </section>
 
@@ -177,29 +165,115 @@
         <span>C++</span>
         <span>HTML</span>
         <span>CSS</span>
+        <span>JavaScript</span>
         <span>GitHub</span>
-        <span>Problem Solving</span>
-        <span>Teamwork</span>
       </div>
     </section>
 
-    <section id="education" class="card">
-      <h2>Education</h2>
-      <p>Bachelor’s Degree in Software Engineering</p>
+    <section id="simulation" class="card">
+      <h2>Mini Simulation</h2>
+      <p>This section shows a simple animation simulation using JavaScript canvas.</p>
+      <canvas id="simCanvas" width="700" height="300"></canvas>
     </section>
 
     <section id="contact" class="card">
       <h2>Contact</h2>
       <p>Email: your-email@email.com</p>
       <p>LinkedIn: add your LinkedIn link here</p>
-      <p>GitHub: https://github.com/yourusername</p>
+      <p>GitHub: https://github.com/prss99</p>
     </section>
-
   </div>
 
   <footer>
-    <p>© 2026 Priscilla N | Portfolio</p>
+    <p>© 2026 Priscilla N | Interactive Portfolio</p>
   </footer>
 
+  <script>
+    // Typing effect
+    const text = "Software Engineering Graduate | Aspiring Developer";
+    let i = 0;
+    function typeEffect() {
+      if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 70);
+      }
+    }
+    typeEffect();
+
+    // Background particles
+    const bg = document.getElementById("bg");
+    const ctx = bg.getContext("2d");
+    bg.width = window.innerWidth;
+    bg.height = window.innerHeight;
+
+    const particles = [];
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * bg.width,
+        y: Math.random() * bg.height,
+        r: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 1,
+        dy: (Math.random() - 0.5) * 1
+      });
+    }
+
+    function animateBg() {
+      ctx.clearRect(0, 0, bg.width, bg.height);
+      ctx.fillStyle = "rgba(147,197,253,0.8)";
+      particles.forEach(p => {
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > bg.width) p.dx *= -1;
+        if (p.y < 0 || p.y > bg.height) p.dy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(animateBg);
+    }
+    animateBg();
+
+    window.addEventListener("resize", () => {
+      bg.width = window.innerWidth;
+      bg.height = window.innerHeight;
+    });
+
+    // Mini simulation
+    const simCanvas = document.getElementById("simCanvas");
+    const sctx = simCanvas.getContext("2d");
+
+    const balls = [];
+    for (let i = 0; i < 10; i++) {
+      balls.push({
+        x: Math.random() * simCanvas.width,
+        y: Math.random() * simCanvas.height,
+        r: 12,
+        dx: (Math.random() - 0.5) * 4,
+        dy: (Math.random() - 0.5) * 4
+      });
+    }
+
+    function animateSim() {
+      sctx.clearRect(0, 0, simCanvas.width, simCanvas.height);
+      balls.forEach(ball => {
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+
+        if (ball.x - ball.r < 0 || ball.x + ball.r > simCanvas.width) ball.dx *= -1;
+        if (ball.y - ball.r < 0 || ball.y + ball.r > simCanvas.height) ball.dy *= -1;
+
+        sctx.beginPath();
+        sctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+        sctx.fillStyle = "#60a5fa";
+        sctx.fill();
+      });
+
+      requestAnimationFrame(animateSim);
+    }
+    animateSim();
+  </script>
 </body>
 </html>
