@@ -443,42 +443,41 @@
     const overlay = document.getElementById("overlay");
     const closeBtn = document.getElementById("closeBtn");
 
-    const surfaceSound = document.getElementById("surfaceSound");
-    const enterSound = document.getElementById("enterSound");
-    const bubbleSound = document.getElementById("bubbleSound");
-    const underwaterSound = document.getElementById("underwaterSound");
+   const surfaceSound = document.getElementById("surfaceSound");
+const enterSound = document.getElementById("enterSound");
+const bubbleSound = document.getElementById("bubbleSound");
+const underwaterSound = document.getElementById("underwaterSound");
 
-    const mouse = { x: -9999, y: -9999 };
+let surfaceStarted = false;
 
-    function playSound(audioEl, volume = 0.5) {
-      if (!audioEl) return;
-      audioEl.pause();
-      audioEl.currentTime = 0;
-      audioEl.volume = volume;
-      audioEl.play().catch(() => {});
-    }
+function startSurfaceSound() {
+  if (surfaceStarted) return;
+  surfaceStarted = true;
+  surfaceSound.volume = 0.35;
+  surfaceSound.play().catch(() => {});
+}
 
-    enterBtn.addEventListener("click", () => {
+document.addEventListener("click", startSurfaceSound, { once: true });
+document.addEventListener("keydown", startSurfaceSound, { once: true });
 
+enterBtn.addEventListener("click", () => {
+  enterSound.currentTime = 0;
   enterSound.volume = 0.6;
-  enterSound.play();
+  enterSound.play().catch(() => {});
 
-  /* fade out ocean surface sound */
   let fadeOut = setInterval(() => {
     if (surfaceSound.volume > 0.05) {
       surfaceSound.volume -= 0.05;
     } else {
       surfaceSound.pause();
+      surfaceSound.currentTime = 0;
       clearInterval(fadeOut);
     }
   }, 120);
 
-  /* start underwater ambience */
   setTimeout(() => {
-
     underwaterSound.volume = 0.25;
-    underwaterSound.play();
-
+    underwaterSound.play().catch(() => {});
   }, 700);
 
   welcomePage.classList.add("hidden");
@@ -487,7 +486,6 @@
     portfolioPage.classList.add("show");
     resizeCanvas();
   }, 300);
-
 });
 
     window.addEventListener("resize", resizeCanvas);
@@ -503,12 +501,7 @@
       mouse.y = -9999;
     });
 
-    window.addEventListener("load", () => {
-
-  surfaceSound.volume = 0.35;
-  surfaceSound.play().catch(()=>{});
-
-});
+   
 
     canvas.addEventListener("click", (e) => {
       const rect = canvas.getBoundingClientRect();
@@ -609,15 +602,13 @@
     };
 
     function openPanel(key) {
-
   bubbleSound.currentTime = 0;
   bubbleSound.volume = 0.45;
-  bubbleSound.play();
+  bubbleSound.play().catch(() => {});
 
   panelContent.innerHTML = portfolioData[key];
   panel.classList.add("active");
   overlay.classList.add("active");
-
 }
 
     function closePanel() {
