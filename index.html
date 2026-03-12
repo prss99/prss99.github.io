@@ -403,15 +403,13 @@
   <!-- PORTFOLIO PAGE -->
   <section id="portfolioPage">
     <canvas id="world"></canvas>
-
+    
     <div class="hud">
-      <h1>Priscilla N</h1>
-      <p id="typing"></p>
       <p class="small">
-        Explore the simulation. Click any glowing zone or move the white explorer with
-        <strong>arrow keys / WASD</strong>.
-      </p>
-    </div>
+    Explore the simulation. Click any glowing zone or move the white explorer with
+    <strong>arrow keys / WASD</strong>.
+  </p>
+</div>
 
 
     <div class="legend">
@@ -458,17 +456,6 @@
 
     window.addEventListener("resize", resizeCanvas);
 
-    const introText = "Software Engineering Graduate | Interactive Systems | Simulation-Inspired Portfolio";
-    let typeIndex = 0;
-    function typeText() {
-      const target = document.getElementById("typing");
-      if (typeIndex < introText.length) {
-        target.textContent += introText.charAt(typeIndex);
-        typeIndex++;
-        setTimeout(typeText, 35);
-      }
-    }
-    typeText();
 
     const portfolioData = {
       about: `
