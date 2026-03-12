@@ -24,7 +24,6 @@
       background: radial-gradient(circle at top, #10243f 0%, #07111f 45%, #040913 100%);
     }
 
-    /* WELCOME PAGE */
     #welcomePage {
       position: fixed;
       inset: 0;
@@ -130,7 +129,6 @@
       background: #0b1524;
     }
 
-    /* PORTFOLIO PAGE */
     #portfolioPage {
       width: 100%;
       height: 100%;
@@ -149,74 +147,8 @@
       display: block;
       width: 100vw;
       height: 100vh;
-      background:
-        radial-gradient(circle at top, #10243f 0%, #07111f 45%, #040913 100%);
+      background: radial-gradient(circle at top, #10243f 0%, #07111f 45%, #040913 100%);
       cursor: crosshair;
-    }
-
-    .hud {
-      position: fixed;
-      top: 18px;
-      left: 18px;
-      z-index: 20;
-      background: rgba(7, 17, 31, 0.72);
-      border: 1px solid rgba(140, 200, 255, 0.25);
-      backdrop-filter: blur(8px);
-      border-radius: 16px;
-      padding: 16px 18px;
-      width: min(360px, calc(100vw - 36px));
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    }
-    .hud {
-      position: fixed;
-      top: 18px;
-      left: 18px;
-      z-index: 20;
-      background: rgba(7, 17, 31, 0.72);
-      border: 1px solid rgba(140, 200, 255, 0.25);
-      backdrop-filter: blur(8px);
-      border-radius: 16px;
-      padding: 16px 18px;
-      width: min(360px, calc(100vw - 36px));
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    }
-
-    .hud h1 {
-      font-size: 1.6rem;
-      margin-bottom: 6px;
-      color: #ffffff;
-    }
-
-    .hud p {
-      font-size: 0.95rem;
-      color: #c8ddf8;
-      line-height: 1.5;
-    }
-
-    .hud .small {
-      margin-top: 10px;
-      font-size: 0.82rem;
-      color: #8fb7e5;
-    }
-
-    .legend {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 20;
-      background: rgba(7, 17, 31, 0.72);
-      border: 1px solid rgba(140, 200, 255, 0.25);
-      backdrop-filter: blur(8px);
-      border-radius: 16px;
-      padding: 14px 16px;
-      width: min(320px, calc(100vw - 36px));
-      color: #cfe5ff;
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .legend strong {
-      color: #ffffff;
     }
 
     .panel {
@@ -332,61 +264,19 @@
     a:hover {
       text-decoration: underline;
     }
-
-    @media (max-width: 768px) {
-      .welcome-card {
-        flex-direction: column-reverse;
-        text-align: center;
-        padding: 30px 22px;
-      }
-
-      .welcome-text p {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .photo-circle {
-        width: 200px;
-        height: 200px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hud {
-        width: calc(100vw - 24px);
-        left: 12px;
-        top: 12px;
-      }
-
-      .legend {
-        width: calc(100vw - 24px);
-        left: 12px;
-        right: auto;
-        bottom: 12px;
-      }
-
-      .hud h1 {
-        font-size: 1.3rem;
-      }
-
-      .panel {
-        padding: 20px 16px;
-      }
-    }
   </style>
 </head>
 <body>
 
-  <!-- WELCOME PAGE -->
   <section id="welcomePage">
     <div class="welcome-card">
       <div class="welcome-text">
         <h1>Prescilla</h1>
         <h2>GET-WRP Trainee | Software Engineering Graduate | Interested in Software Development & Technology</h2>
-        <p style="text-align: justify;">
-          I am a Software Engineering graduate with a strong interest in software development and technology solutions. 
-          During my academic journey, I developed several projects, including a 3D Crowd Emergency Evacuation Simulation and Analysis system that explores crowd behavior during emergency situations. 
-          I enjoy solving complex problems, building meaningful applications, and continuously learning new technologies to improve my skills. 
+        <p>
+          I am a Software Engineering graduate with a strong interest in software development and technology solutions.
+          During my academic journey, I developed several projects, including a 3D Crowd Emergency Evacuation Simulation and Analysis system that explores crowd behavior during emergency situations.
+          I enjoy solving complex problems, building meaningful applications, and continuously learning new technologies to improve my skills.
           Currently, I am a GET-WRP Trainee and I am seeking opportunities to grow professionally and contribute as a software developer in the technology industry.
         </p>
         <button class="enter-btn" id="enterBtn">Enter Portfolio</button>
@@ -394,17 +284,14 @@
 
       <div class="photo-wrapper">
         <div class="photo-circle">
-          <img src="Mypassport.jpeg" alt=Prescilla">
+          <img src="Mypassport.jpeg" alt="Prescilla">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PORTFOLIO PAGE -->
   <section id="portfolioPage">
     <canvas id="world"></canvas>
-    
-
     <div class="overlay" id="overlay"></div>
 
     <div class="panel" id="infoPanel">
@@ -418,14 +305,6 @@
     const portfolioPage = document.getElementById("portfolioPage");
     const enterBtn = document.getElementById("enterBtn");
 
-    enterBtn.addEventListener("click", () => {
-      welcomePage.classList.add("hidden");
-      portfolioPage.classList.add("show");
-      setTimeout(() => {
-        resizeCanvas();
-      }, 500);
-    });
-
     const canvas = document.getElementById("world");
     const ctx = canvas.getContext("2d");
     const panel = document.getElementById("infoPanel");
@@ -433,16 +312,52 @@
     const overlay = document.getElementById("overlay");
     const closeBtn = document.getElementById("closeBtn");
 
+    const mouse = { x: -9999, y: -9999 };
+    const player = { x: 0, y: 0 };
+
+    enterBtn.addEventListener("click", () => {
+      welcomePage.classList.add("hidden");
+      portfolioPage.classList.add("show");
+      resizeCanvas();
+    });
+
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      player.x = canvas.width / 2;
+      player.y = canvas.height / 2;
       initializeZones();
+
       if (particles.length === 0) initParticles();
       if (agents.length === 0) initAgents();
     }
 
     window.addEventListener("resize", resizeCanvas);
 
+    canvas.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+      mouse.x = -9999;
+      mouse.y = -9999;
+    });
+
+    canvas.addEventListener("click", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+
+      for (const zone of zones) {
+        const d = getDistance(clickX, clickY, zone.x, zone.y);
+        if (d <= zone.r) {
+          openPanel(zone.key);
+          break;
+        }
+      }
+    });
 
     const portfolioData = {
       about: `
@@ -465,7 +380,6 @@
       `,
       projects: `
         <h2>Projects</h2>
-
         <div class="project-card">
           <strong>Final Year Project: 3D Crowd Emergency Simulation and Analysis</strong>
           <p>
@@ -473,7 +387,6 @@
             movement patterns, congestion, and evacuation strategies.
           </p>
         </div>
-
         <div class="project-card">
           <strong>Academic Programming Projects</strong>
           <p>
@@ -481,7 +394,6 @@
             and problem-solving skills.
           </p>
         </div>
-
         <div class="project-card">
           <strong>Portfolio Simulation Website</strong>
           <p>
@@ -502,7 +414,6 @@
           <span class="badge">JavaScript</span>
           <span class="badge">GitHub</span>
         </div>
-
         <h3>Soft Skills</h3>
         <div class="badge-row">
           <span class="badge">Problem Solving</span>
@@ -545,11 +456,13 @@
 
     closeBtn.addEventListener("click", closePanel);
     overlay.addEventListener("click", closePanel);
+
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closePanel();
     });
 
     let zones = [];
+
     function initializeZones() {
       const w = canvas.width;
       const h = canvas.height;
@@ -573,7 +486,7 @@
           y: Math.random() * canvas.height,
           vx: (Math.random() - 0.5) * 0.7,
           vy: (Math.random() - 0.5) * 0.7,
-          size: Math.random() * 2 + 1,
+          size: Math.random() * 2 + 1
         });
       }
     }
@@ -593,31 +506,10 @@
       }
     }
 
-
-
-
-
     function getDistance(x1, y1, x2, y2) {
       return Math.hypot(x2 - x1, y2 - y1);
     }
 
-    function getNearestZone(x, y, threshold) {
-      let chosen = null;
-      let minDist = Infinity;
-      for (const zone of zones) {
-        const d = getDistance(x, y, zone.x, zone.y) - zone.r;
-        if (d < threshold && d < minDist) {
-          minDist = d;
-          chosen = zone;
-        }
-      }
-      return chosen;
-    }
-
-    
-        
-
-   
     function updateParticles() {
       for (const p of particles) {
         p.x += p.vx;
@@ -678,6 +570,7 @@
         ctx.lineTo(canvas.width, y);
         ctx.stroke();
       }
+
       ctx.restore();
     }
 
@@ -723,11 +616,8 @@
     function drawZones(mouseX, mouseY) {
       for (const zone of zones) {
         const dMouse = getDistance(mouseX, mouseY, zone.x, zone.y);
-        const dPlayer = getDistance(player.x, player.y, zone.x, zone.y);
         const hovered = dMouse < zone.r;
-        const active = hovered || dPlayer < zone.r + 18;
-
-        const glow = active ? 24 : 14;
+        const glow = hovered ? 24 : 14;
 
         ctx.save();
         ctx.shadowBlur = glow;
@@ -743,37 +633,29 @@
         ctx.fill();
 
         ctx.beginPath();
-        ctx.lineWidth = active ? 3 : 2;
+        ctx.lineWidth = hovered ? 3 : 2;
         ctx.strokeStyle = zone.color;
         ctx.arc(zone.x, zone.y, zone.r, 0, Math.PI * 2);
         ctx.stroke();
 
         ctx.fillStyle = "#ffffff";
-        ctx.font = active ? "bold 14px Arial" : "bold 13px Arial";
+        ctx.font = hovered ? "bold 14px Arial" : "bold 13px Arial";
         ctx.textAlign = "center";
         ctx.fillText(zone.label, zone.x, zone.y + 5);
         ctx.restore();
       }
     }
 
-    
-
-    });
-
-    
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       drawBackgroundGrid();
       updateParticles();
       updateAgents();
-    
-
       drawParticles();
       drawAgentConnections();
       drawAgents();
       drawZones(mouse.x, mouse.y);
-     
 
       requestAnimationFrame(animate);
     }
