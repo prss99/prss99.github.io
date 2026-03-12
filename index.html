@@ -593,27 +593,9 @@
       }
     }
 
-    const player = {
-      x: 120,
-      y: 120,
-      r: 11,
-      speed: 2.5
-    };
 
-    const keys = {};
 
-    window.addEventListener("keydown", (e) => {
-      keys[e.key.toLowerCase()] = true;
 
-      if (e.key === "Enter") {
-        const nearest = getNearestZone(player.x, player.y, 90);
-        if (nearest) openPanel(nearest.key);
-      }
-    });
-
-    window.addEventListener("keyup", (e) => {
-      keys[e.key.toLowerCase()] = false;
-    });
 
     function getDistance(x1, y1, x2, y2) {
       return Math.hypot(x2 - x1, y2 - y1);
@@ -632,27 +614,10 @@
       return chosen;
     }
 
-    function updatePlayer() {
-      let dx = 0;
-      let dy = 0;
+    
+        
 
-      if (keys["arrowup"] || keys["w"]) dy -= 1;
-      if (keys["arrowdown"] || keys["s"]) dy += 1;
-      if (keys["arrowleft"] || keys["a"]) dx -= 1;
-      if (keys["arrowright"] || keys["d"]) dx += 1;
-
-      if (dx !== 0 || dy !== 0) {
-        const len = Math.hypot(dx, dy);
-        dx /= len;
-        dy /= len;
-        player.x += dx * player.speed;
-        player.y += dy * player.speed;
-      }
-
-      player.x = Math.max(player.r, Math.min(canvas.width - player.r, player.x));
-      player.y = Math.max(player.r, Math.min(canvas.height - player.r, player.y));
-    }
-
+   
     function updateParticles() {
       for (const p of particles) {
         p.x += p.vx;
@@ -791,69 +756,24 @@
       }
     }
 
-    function drawPlayer() {
-      const nearest = getNearestZone(player.x, player.y, 90);
+    
 
-      ctx.save();
-      ctx.shadowBlur = 18;
-      ctx.shadowColor = "#ffffff";
-      ctx.beginPath();
-      ctx.fillStyle = "#ffffff";
-      ctx.arc(player.x, player.y, player.r, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.strokeStyle = "rgba(255,255,255,0.35)";
-      ctx.arc(player.x, player.y, player.r + 10, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.restore();
-
-      if (nearest) {
-        ctx.save();
-        ctx.fillStyle = "rgba(255,255,255,0.9)";
-        ctx.font = "13px Arial";
-        ctx.textAlign = "center";
-        ctx.fillText("Press Enter", player.x, player.y - 24);
-        ctx.restore();
-      }
-    }
-
-    let mouse = { x: -999, y: -999 };
-
-    canvas.addEventListener("mousemove", (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
     });
 
-    canvas.addEventListener("mouseleave", () => {
-      mouse.x = -999;
-      mouse.y = -999;
-    });
-
-    canvas.addEventListener("click", (e) => {
-      const mx = e.clientX;
-      const my = e.clientY;
-      for (const zone of zones) {
-        if (getDistance(mx, my, zone.x, zone.y) <= zone.r) {
-          openPanel(zone.key);
-          return;
-        }
-      }
-    });
-
+    
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       drawBackgroundGrid();
       updateParticles();
       updateAgents();
-      updatePlayer();
+    
 
       drawParticles();
       drawAgentConnections();
       drawAgents();
       drawZones(mouse.x, mouse.y);
-      drawPlayer();
+     
 
       requestAnimationFrame(animate);
     }
