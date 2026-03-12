@@ -415,7 +415,11 @@
   </section>
 
   <!-- AUDIO -->
-  <audio id="enterSound">
+  <audio id="surfaceSound" loop>
+  <source src="ocean-ambience.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="enterSound">
   <source src="water-drop.mp3" type="audio/mpeg">
 </audio>
 
@@ -423,8 +427,8 @@
   <source src="bubble-pop.mp3" type="audio/mpeg">
 </audio>
 
-<audio id="ambientSound" loop>
-  <source src="ocean-ambience.mp3" type="audio/mpeg">
+<audio id="underwaterSound" loop>
+  <source src="underwater-ambience.mp3" type="audio/mpeg">
 </audio>
 
   <script>
@@ -439,9 +443,10 @@
     const overlay = document.getElementById("overlay");
     const closeBtn = document.getElementById("closeBtn");
 
+    const surfaceSound = document.getElementById("surfaceSound");
     const enterSound = document.getElementById("enterSound");
     const bubbleSound = document.getElementById("bubbleSound");
-    const ambientSound = document.getElementById("ambientSound");
+    const underwaterSound = document.getElementById("underwaterSound");
 
     const mouse = { x: -9999, y: -9999 };
 
@@ -458,10 +463,23 @@
   enterSound.volume = 0.6;
   enterSound.play();
 
+  /* fade out ocean surface sound */
+  let fadeOut = setInterval(() => {
+    if (surfaceSound.volume > 0.05) {
+      surfaceSound.volume -= 0.05;
+    } else {
+      surfaceSound.pause();
+      clearInterval(fadeOut);
+    }
+  }, 120);
+
+  /* start underwater ambience */
   setTimeout(() => {
-    ambientSound.volume = 0.25;
-    ambientSound.play();
-  }, 800);
+
+    underwaterSound.volume = 0.25;
+    underwaterSound.play();
+
+  }, 700);
 
   welcomePage.classList.add("hidden");
 
@@ -484,6 +502,13 @@
       mouse.x = -9999;
       mouse.y = -9999;
     });
+
+    window.addEventListener("load", () => {
+
+  surfaceSound.volume = 0.35;
+  surfaceSound.play().catch(()=>{});
+
+});
 
     canvas.addEventListener("click", (e) => {
       const rect = canvas.getBoundingClientRect();
@@ -586,12 +611,13 @@
     function openPanel(key) {
 
   bubbleSound.currentTime = 0;
-  bubbleSound.volume = 0.5;
+  bubbleSound.volume = 0.45;
   bubbleSound.play();
 
   panelContent.innerHTML = portfolioData[key];
   panel.classList.add("active");
   overlay.classList.add("active");
+
 }
 
     function closePanel() {
