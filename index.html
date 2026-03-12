@@ -415,13 +415,17 @@
   </section>
 
   <!-- AUDIO -->
-  <audio id="enterSound" preload="auto">
-    <source src="enter-water.mp3" type="audio/mpeg">
-  </audio>
+  <audio id="enterSound">
+  <source src="water-drop.mp3" type="audio/mpeg">
+</audio>
 
-  <audio id="bubbleSound" preload="auto">
-    <source src="bubble-pop.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bubbleSound">
+  <source src="bubble-pop.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="ambientSound" loop>
+  <source src="ocean-ambience.mp3" type="audio/mpeg">
+</audio>
 
   <script>
     const welcomePage = document.getElementById("welcomePage");
@@ -437,6 +441,7 @@
 
     const enterSound = document.getElementById("enterSound");
     const bubbleSound = document.getElementById("bubbleSound");
+    const ambientSound = document.getElementById("ambientSound");
 
     const mouse = { x: -9999, y: -9999 };
 
@@ -449,14 +454,23 @@
     }
 
     enterBtn.addEventListener("click", () => {
-      playSound(enterSound, 0.6);
-      welcomePage.classList.add("hidden");
 
-      setTimeout(() => {
-        portfolioPage.classList.add("show");
-        resizeCanvas();
-      }, 350);
-    });
+  enterSound.volume = 0.6;
+  enterSound.play();
+
+  setTimeout(() => {
+    ambientSound.volume = 0.25;
+    ambientSound.play();
+  }, 800);
+
+  welcomePage.classList.add("hidden");
+
+  setTimeout(() => {
+    portfolioPage.classList.add("show");
+    resizeCanvas();
+  }, 300);
+
+});
 
     window.addEventListener("resize", resizeCanvas);
 
@@ -570,11 +584,15 @@
     };
 
     function openPanel(key) {
-      playSound(bubbleSound, 0.45);
-      panelContent.innerHTML = portfolioData[key];
-      panel.classList.add("active");
-      overlay.classList.add("active");
-    }
+
+  bubbleSound.currentTime = 0;
+  bubbleSound.volume = 0.5;
+  bubbleSound.play();
+
+  panelContent.innerHTML = portfolioData[key];
+  panel.classList.add("active");
+  overlay.classList.add("active");
+}
 
     function closePanel() {
       panel.classList.remove("active");
