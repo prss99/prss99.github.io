@@ -16,14 +16,14 @@
       height: 100%;
       overflow: hidden;
       font-family: Arial, sans-serif;
-      background: #07111f;
       color: #eaf4ff;
     }
 
     body {
-      background: radial-gradient(circle at top, #10243f 0%, #07111f 45%, #040913 100%);
+      background: linear-gradient(to bottom, #7ed7ff 0%, #bfefff 35%, #f6d79d 70%, #e7c07a 100%);
     }
 
+    /* BEACH WELCOME PAGE */
     #welcomePage {
       position: fixed;
       inset: 0;
@@ -33,10 +33,10 @@
       padding: 20px;
       z-index: 100;
       background:
-        radial-gradient(circle at top, rgba(39, 89, 156, 0.35), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(0, 183, 255, 0.18), transparent 30%),
-        linear-gradient(135deg, #08111f, #0f1f37, #07111f);
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+        radial-gradient(circle at top, rgba(255,255,255,0.35), transparent 25%),
+        linear-gradient(to bottom, #79d8ff 0%, #bcecff 38%, #f3d59b 72%, #ddb06a 100%);
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+      overflow: hidden;
     }
 
     #welcomePage.hidden {
@@ -45,18 +45,67 @@
       pointer-events: none;
     }
 
+    .sun {
+      position: absolute;
+      top: 60px;
+      right: 110px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff7b0 0%, #ffd86b 60%, rgba(255,216,107,0.2) 100%);
+      box-shadow: 0 0 50px rgba(255, 220, 120, 0.7);
+    }
+
+    .wave {
+      position: absolute;
+      left: -10%;
+      width: 120%;
+      border-radius: 50%;
+      opacity: 0.22;
+      animation: floatWave 8s ease-in-out infinite;
+    }
+
+    .wave1 {
+      bottom: 120px;
+      height: 120px;
+      background: rgba(255,255,255,0.35);
+    }
+
+    .wave2 {
+      bottom: 90px;
+      height: 100px;
+      background: rgba(180,240,255,0.28);
+      animation-delay: 1.5s;
+    }
+
+    .sand {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 140px;
+      background: linear-gradient(to bottom, #efcd8e, #d8ac68);
+    }
+
+    @keyframes floatWave {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-30px); }
+    }
+
     .welcome-card {
-      width: min(900px, 100%);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(140, 200, 255, 0.18);
+      position: relative;
+      width: min(960px, 100%);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
       backdrop-filter: blur(14px);
       border-radius: 28px;
-      padding: 40px 30px;
+      padding: 36px 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 30px;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+      z-index: 2;
     }
 
     .welcome-text {
@@ -65,43 +114,44 @@
 
     .welcome-text h1 {
       font-size: clamp(2.2rem, 5vw, 4rem);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: #ffffff;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.12);
     }
 
     .welcome-text h2 {
-      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-size: clamp(1rem, 2vw, 1.3rem);
       font-weight: normal;
-      color: #9bd3ff;
+      color: #104d70;
       margin-bottom: 18px;
     }
 
     .welcome-text p {
       font-size: 1rem;
-      line-height: 1.7;
-      color: #d7e8fb;
+      line-height: 1.75;
+      color: #14384d;
       margin-bottom: 22px;
-      max-width: 520px;
+      max-width: 530px;
       text-align: justify;
     }
 
     .enter-btn {
       display: inline-block;
-      padding: 14px 26px;
+      padding: 14px 28px;
       border: none;
       border-radius: 999px;
-      background: linear-gradient(135deg, #4da8ff, #7c5cff);
+      background: linear-gradient(135deg, #1aa7d1, #0d6efd);
       color: white;
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(77, 168, 255, 0.35);
+      box-shadow: 0 10px 24px rgba(13, 110, 253, 0.28);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .enter-btn:hover {
       transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 12px 28px rgba(77, 168, 255, 0.45);
+      box-shadow: 0 14px 28px rgba(13, 110, 253, 0.35);
     }
 
     .photo-wrapper {
@@ -116,8 +166,8 @@
       height: 250px;
       border-radius: 50%;
       padding: 8px;
-      background: linear-gradient(135deg, #64c8ff, #8b5cf6);
-      box-shadow: 0 0 35px rgba(100, 200, 255, 0.35);
+      background: linear-gradient(135deg, #ffffff, #b8ecff);
+      box-shadow: 0 0 35px rgba(255, 255, 255, 0.35);
     }
 
     .photo-circle img {
@@ -126,16 +176,17 @@
       object-fit: cover;
       border-radius: 50%;
       display: block;
-      background: #0b1524;
+      background: #dfefff;
     }
 
+    /* PORTFOLIO PAGE */
     #portfolioPage {
       width: 100%;
       height: 100%;
       position: relative;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
     }
 
     #portfolioPage.show {
@@ -147,8 +198,35 @@
       display: block;
       width: 100vw;
       height: 100vh;
-      background: radial-gradient(circle at top, #10243f 0%, #07111f 45%, #040913 100%);
       cursor: crosshair;
+      background:
+        radial-gradient(circle at top, rgba(120, 240, 255, 0.18), transparent 20%),
+        linear-gradient(to bottom, #0b3c5d 0%, #0a4f73 20%, #0c6787 45%, #0a5d74 70%, #07364f 100%);
+    }
+
+    .hud {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 20;
+      background: rgba(7, 34, 52, 0.35);
+      border: 1px solid rgba(180, 240, 255, 0.14);
+      padding: 12px 16px;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      max-width: 350px;
+    }
+
+    .hud h3 {
+      margin-bottom: 6px;
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    .hud p {
+      font-size: 0.92rem;
+      color: #d2efff;
+      line-height: 1.6;
     }
 
     .panel {
@@ -160,11 +238,11 @@
       max-height: min(82vh, 760px);
       overflow-y: auto;
       z-index: 40;
-      background: rgba(8, 18, 33, 0.96);
-      border: 1px solid rgba(125, 190, 255, 0.32);
+      background: rgba(5, 26, 42, 0.94);
+      border: 1px solid rgba(125, 190, 255, 0.28);
       border-radius: 22px;
       padding: 24px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
       opacity: 0;
       pointer-events: none;
       transition: 0.25s ease;
@@ -185,11 +263,11 @@
     .panel h3 {
       margin-top: 18px;
       margin-bottom: 8px;
-      color: #8fd0ff;
+      color: #8fdfff;
     }
 
     .panel p, .panel li {
-      color: #d5e7fb;
+      color: #d5efff;
       line-height: 1.7;
       font-size: 0.98rem;
     }
@@ -216,7 +294,7 @@
     .overlay {
       position: fixed;
       inset: 0;
-      background: rgba(3, 8, 15, 0.45);
+      background: rgba(3, 8, 15, 0.42);
       z-index: 30;
       opacity: 0;
       pointer-events: none;
@@ -248,7 +326,7 @@
       margin-top: 12px;
       padding: 14px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(140, 200, 255, 0.14);
     }
 
@@ -257,18 +335,45 @@
     }
 
     a {
-      color: #8fd0ff;
+      color: #8fdfff;
       text-decoration: none;
     }
 
     a:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+      .welcome-card {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .welcome-text p {
+        text-align: center;
+        max-width: none;
+      }
+
+      .photo-circle {
+        width: 200px;
+        height: 200px;
+      }
+
+      .hud {
+        max-width: calc(100vw - 40px);
+      }
+    }
   </style>
 </head>
 <body>
 
+  <!-- BEACH PAGE -->
   <section id="welcomePage">
+    <div class="sun"></div>
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="sand"></div>
+
     <div class="welcome-card">
       <div class="welcome-text">
         <h1>Prescilla</h1>
@@ -290,8 +395,17 @@
     </div>
   </section>
 
+  <!-- UNDERWATER PAGE -->
   <section id="portfolioPage">
     <canvas id="world"></canvas>
+
+    <div class="hud">
+      <h3>Underwater Portfolio</h3>
+      <p>
+        Click the glowing bubbles to explore About, Projects, Skills, Education, and Contact.
+      </p>
+    </div>
+
     <div class="overlay" id="overlay"></div>
 
     <div class="panel" id="infoPanel">
@@ -299,6 +413,15 @@
       <div id="panelContent"></div>
     </div>
   </section>
+
+  <!-- AUDIO -->
+  <audio id="enterSound" preload="auto">
+    <source src="enter-water.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="bubbleSound" preload="auto">
+    <source src="bubble-pop.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     const welcomePage = document.getElementById("welcomePage");
@@ -312,25 +435,28 @@
     const overlay = document.getElementById("overlay");
     const closeBtn = document.getElementById("closeBtn");
 
+    const enterSound = document.getElementById("enterSound");
+    const bubbleSound = document.getElementById("bubbleSound");
+
     const mouse = { x: -9999, y: -9999 };
-    const player = { x: 0, y: 0 };
+
+    function playSound(audioEl, volume = 0.5) {
+      if (!audioEl) return;
+      audioEl.pause();
+      audioEl.currentTime = 0;
+      audioEl.volume = volume;
+      audioEl.play().catch(() => {});
+    }
 
     enterBtn.addEventListener("click", () => {
+      playSound(enterSound, 0.6);
       welcomePage.classList.add("hidden");
-      portfolioPage.classList.add("show");
-      resizeCanvas();
+
+      setTimeout(() => {
+        portfolioPage.classList.add("show");
+        resizeCanvas();
+      }, 350);
     });
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      player.x = canvas.width / 2;
-      player.y = canvas.height / 2;
-      initializeZones();
-
-      if (particles.length === 0) initParticles();
-      if (agents.length === 0) initAgents();
-    }
 
     window.addEventListener("resize", resizeCanvas);
 
@@ -363,13 +489,13 @@
       about: `
         <h2>About Me</h2>
         <p>
-          Hello, I am Priscilla, a fresh graduate with a Bachelor's Degree in Software Engineering.
+          Hello, I am Prescilla, a fresh graduate with a Bachelor's Degree in Software Engineering.
           I am interested in software development, interactive web experiences, and simulation-based systems.
         </p>
         <h3>My Focus</h3>
         <p>
-          I enjoy building digital solutions that are not only functional, but also engaging and meaningful.
-          This portfolio is designed as an interactive simulation space to reflect my interest in systems,
+          I enjoy building digital solutions that are functional, interactive, and meaningful.
+          This portfolio is designed with a bubble beach and underwater concept to reflect creativity,
           motion, and user experience.
         </p>
         <div class="badge-row">
@@ -390,15 +516,15 @@
         <div class="project-card">
           <strong>Academic Programming Projects</strong>
           <p>
-            Developed software and coding projects during my academic journey using programming, logic building,
-            and problem-solving skills.
+            Developed software and coding projects during my academic journey using problem-solving and
+            programming skills.
           </p>
         </div>
         <div class="project-card">
-          <strong>Portfolio Simulation Website</strong>
+          <strong>Interactive Portfolio Website</strong>
           <p>
-            This website is itself an interactive project. It presents my profile through movement, clickable
-            zones, and a simple simulation environment instead of a static page.
+            A portfolio presented through a beach-to-underwater experience with glowing bubbles,
+            animation, and interactive sections instead of a static page.
           </p>
         </div>
       `,
@@ -444,6 +570,7 @@
     };
 
     function openPanel(key) {
+      playSound(bubbleSound, 0.45);
       panelContent.innerHTML = portfolioData[key];
       panel.classList.add("active");
       overlay.classList.add("active");
@@ -462,47 +589,72 @@
     });
 
     let zones = [];
+    const particles = [];
+    const bubbles = [];
+    const rays = [];
+    let animationStarted = false;
 
     function initializeZones() {
       const w = canvas.width;
       const h = canvas.height;
+
       zones = [
-        { key: "about", label: "ABOUT", x: w * 0.18, y: h * 0.30, r: 62, color: "#5eead4" },
-        { key: "projects", label: "PROJECTS", x: w * 0.50, y: h * 0.24, r: 74, color: "#60a5fa" },
-        { key: "skills", label: "SKILLS", x: w * 0.78, y: h * 0.34, r: 62, color: "#c084fc" },
-        { key: "education", label: "EDUCATION", x: w * 0.30, y: h * 0.72, r: 68, color: "#f9a8d4" },
-        { key: "contact", label: "CONTACT", x: w * 0.72, y: h * 0.72, r: 66, color: "#fbbf24" }
+        { key: "about", label: "ABOUT", x: w * 0.18, y: h * 0.30, r: 62, color: "#7ae7ff" },
+        { key: "projects", label: "PROJECTS", x: w * 0.50, y: h * 0.24, r: 74, color: "#5cc8ff" },
+        { key: "skills", label: "SKILLS", x: w * 0.78, y: h * 0.34, r: 62, color: "#8ad6ff" },
+        { key: "education", label: "EDUCATION", x: w * 0.30, y: h * 0.72, r: 68, color: "#6fffe9" },
+        { key: "contact", label: "CONTACT", x: w * 0.72, y: h * 0.72, r: 66, color: "#9be7ff" }
       ];
     }
 
-    const particles = [];
-    const particleCount = 80;
-
     function initParticles() {
       particles.length = 0;
-      for (let i = 0; i < particleCount; i++) {
+      for (let i = 0; i < 90; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.7,
-          vy: (Math.random() - 0.5) * 0.7,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
           size: Math.random() * 2 + 1
         });
       }
     }
 
-    const agents = [];
-    const agentCount = 36;
-
-    function initAgents() {
-      agents.length = 0;
-      for (let i = 0; i < agentCount; i++) {
-        agents.push({
-          x: canvas.width / 2 + (Math.random() - 0.5) * 100,
-          y: canvas.height / 2 + (Math.random() - 0.5) * 100,
-          vx: (Math.random() - 0.5) * 1.4,
-          vy: (Math.random() - 0.5) * 1.4
+    function initBubbles() {
+      bubbles.length = 0;
+      for (let i = 0; i < 40; i++) {
+        bubbles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 8 + 2,
+          speed: Math.random() * 1.2 + 0.5,
+          drift: (Math.random() - 0.5) * 0.4
         });
+      }
+    }
+
+    function initRays() {
+      rays.length = 0;
+      for (let i = 0; i < 8; i++) {
+        rays.push({
+          x: Math.random() * canvas.width,
+          width: Math.random() * 80 + 50,
+          alpha: Math.random() * 0.08 + 0.03
+        });
+      }
+    }
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initializeZones();
+      initParticles();
+      initBubbles();
+      initRays();
+
+      if (!animationStarted) {
+        animationStarted = true;
+        animate();
       }
     }
 
@@ -510,104 +662,112 @@
       return Math.hypot(x2 - x1, y2 - y1);
     }
 
+    function drawLightRays() {
+      ctx.save();
+      for (const ray of rays) {
+        const grad = ctx.createLinearGradient(ray.x, 0, ray.x + ray.width, canvas.height);
+        grad.addColorStop(0, `rgba(255,255,255,${ray.alpha})`);
+        grad.addColorStop(1, `rgba(255,255,255,0)`);
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.moveTo(ray.x, 0);
+        ctx.lineTo(ray.x + ray.width, 0);
+        ctx.lineTo(ray.x + ray.width * 0.35, canvas.height);
+        ctx.lineTo(ray.x - ray.width * 0.15, canvas.height);
+        ctx.closePath();
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
     function updateParticles() {
       for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;
 
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
       }
-    }
-
-    function updateAgents() {
-      for (const a of agents) {
-        let ax = 0;
-        let ay = 0;
-
-        for (const zone of zones) {
-          const d = getDistance(a.x, a.y, zone.x, zone.y);
-          if (d < 150) {
-            ax += (a.x - zone.x) / (d + 0.1) * 0.04;
-            ay += (a.y - zone.y) / (d + 0.1) * 0.04;
-          }
-        }
-
-        a.vx += (Math.random() - 0.5) * 0.06 + ax;
-        a.vy += (Math.random() - 0.5) * 0.06 + ay;
-
-        const speed = Math.hypot(a.vx, a.vy);
-        const maxSpeed = 1.5;
-        if (speed > maxSpeed) {
-          a.vx = (a.vx / speed) * maxSpeed;
-          a.vy = (a.vy / speed) * maxSpeed;
-        }
-
-        a.x += a.vx;
-        a.y += a.vy;
-
-        if (a.x < 8 || a.x > canvas.width - 8) a.vx *= -1;
-        if (a.y < 8 || a.y > canvas.height - 8) a.vy *= -1;
-      }
-    }
-
-    function drawBackgroundGrid() {
-      ctx.save();
-      ctx.strokeStyle = "rgba(120, 180, 255, 0.06)";
-      ctx.lineWidth = 1;
-
-      const gap = 40;
-      for (let x = 0; x < canvas.width; x += gap) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
-      }
-
-      for (let y = 0; y < canvas.height; y += gap) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-      }
-
-      ctx.restore();
     }
 
     function drawParticles() {
       ctx.save();
       for (const p of particles) {
         ctx.beginPath();
-        ctx.fillStyle = "rgba(150, 210, 255, 0.45)";
+        ctx.fillStyle = "rgba(210, 245, 255, 0.22)";
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
       }
       ctx.restore();
     }
 
-    function drawAgentConnections() {
+    function updateAndDrawBubbles() {
       ctx.save();
-      ctx.strokeStyle = "rgba(120, 170, 255, 0.08)";
-      for (let i = 0; i < agents.length; i++) {
-        for (let j = i + 1; j < agents.length; j++) {
-          const d = getDistance(agents[i].x, agents[i].y, agents[j].x, agents[j].y);
-          if (d < 70) {
-            ctx.beginPath();
-            ctx.moveTo(agents[i].x, agents[i].y);
-            ctx.lineTo(agents[j].x, agents[j].y);
-            ctx.stroke();
-          }
+      for (const b of bubbles) {
+        b.y -= b.speed;
+        b.x += b.drift;
+
+        if (b.y < -20) {
+          b.y = canvas.height + 20;
+          b.x = Math.random() * canvas.width;
         }
+
+        if (b.x < -20) b.x = canvas.width + 20;
+        if (b.x > canvas.width + 20) b.x = -20;
+
+        ctx.beginPath();
+        ctx.strokeStyle = "rgba(220, 250, 255, 0.42)";
+        ctx.lineWidth = 1.5;
+        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(255,255,255,0.10)";
+        ctx.arc(b.x - b.r * 0.25, b.y - b.r * 0.25, b.r * 0.22, 0, Math.PI * 2);
+        ctx.fill();
       }
       ctx.restore();
     }
 
-    function drawAgents() {
+    function drawZoneConnections() {
       ctx.save();
-      for (const a of agents) {
+      ctx.strokeStyle = "rgba(170, 230, 255, 0.06)";
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < zones.length; i++) {
+        for (let j = i + 1; j < zones.length; j++) {
+          const d = getDistance(zones[i].x, zones[i].y, zones[j].x, zones[j].y);
+          if (d < 380) {
+            ctx.beginPath();
+            ctx.moveTo(zones[i].x, zones[i].y);
+            ctx.lineTo(zones[j].x, zones[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      ctx.restore();
+    }
+
+    function drawSeabed() {
+      const h = canvas.height;
+      ctx.save();
+      const grad = ctx.createLinearGradient(0, h - 140, 0, h);
+      grad.addColorStop(0, "rgba(9, 57, 74, 0)");
+      grad.addColorStop(1, "rgba(6, 30, 44, 0.75)");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, h - 180, canvas.width, 180);
+
+      ctx.fillStyle = "rgba(120, 220, 180, 0.16)";
+      for (let i = 0; i < 14; i++) {
+        const x = i * (canvas.width / 14) + 20;
+        const y = h - 25;
         ctx.beginPath();
-        ctx.fillStyle = "rgba(185, 222, 255, 0.75)";
-        ctx.arc(a.x, a.y, 3.2, 0, Math.PI * 2);
+        ctx.moveTo(x, y);
+        ctx.quadraticCurveTo(x + 8, y - 30, x + 2, y - 60);
+        ctx.quadraticCurveTo(x + 18, y - 30, x + 12, y);
         ctx.fill();
       }
       ctx.restore();
@@ -617,31 +777,33 @@
       for (const zone of zones) {
         const dMouse = getDistance(mouseX, mouseY, zone.x, zone.y);
         const hovered = dMouse < zone.r;
-        const glow = hovered ? 24 : 14;
+        const pulse = Math.sin(Date.now() * 0.002) * 3;
+        const radius = zone.r + pulse * 0.3;
 
         ctx.save();
-        ctx.shadowBlur = glow;
+        ctx.shadowBlur = hovered ? 28 : 18;
         ctx.shadowColor = zone.color;
 
-        const grad = ctx.createRadialGradient(zone.x, zone.y, 10, zone.x, zone.y, zone.r);
-        grad.addColorStop(0, zone.color + "99");
+        const grad = ctx.createRadialGradient(zone.x, zone.y, 12, zone.x, zone.y, radius);
+        grad.addColorStop(0, zone.color + "bb");
         grad.addColorStop(1, "rgba(255,255,255,0.03)");
 
         ctx.beginPath();
         ctx.fillStyle = grad;
-        ctx.arc(zone.x, zone.y, zone.r, 0, Math.PI * 2);
+        ctx.arc(zone.x, zone.y, radius, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.beginPath();
         ctx.lineWidth = hovered ? 3 : 2;
         ctx.strokeStyle = zone.color;
-        ctx.arc(zone.x, zone.y, zone.r, 0, Math.PI * 2);
+        ctx.arc(zone.x, zone.y, radius, 0, Math.PI * 2);
         ctx.stroke();
 
         ctx.fillStyle = "#ffffff";
         ctx.font = hovered ? "bold 14px Arial" : "bold 13px Arial";
         ctx.textAlign = "center";
         ctx.fillText(zone.label, zone.x, zone.y + 5);
+
         ctx.restore();
       }
     }
@@ -649,19 +811,16 @@
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      drawBackgroundGrid();
+      drawLightRays();
       updateParticles();
-      updateAgents();
       drawParticles();
-      drawAgentConnections();
-      drawAgents();
+      drawZoneConnections();
+      updateAndDrawBubbles();
       drawZones(mouse.x, mouse.y);
+      drawSeabed();
 
       requestAnimationFrame(animate);
     }
-
-    resizeCanvas();
-    animate();
   </script>
 </body>
 </html>
